@@ -317,6 +317,14 @@ class HttpRequest
         return $this;
     }
 
+    public function requestAfter()
+    {
+        $this->resultDataBody = array_merge($this->resultDataBody, [
+            "result" => $this->resultDataBody["result"] == self::HTTP_SUCCESS ? self::HTTP_SUCCESS : self::HTTP_ERROR,
+            "desc" => $this->resultDataBody["result"] ?? "",
+        ]);
+    }
+
     public function isSuccess()
     {
         $result = $this->resultDataBody["result"] ?? self::HTTP_ERROR;
