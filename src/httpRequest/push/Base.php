@@ -224,9 +224,6 @@ abstract class Base
 
     public function getOtherParams()
     {
-        if (!$this->getTransmission()) {
-            return [];
-        }
         switch ($this->getMsgtype()) {
             case Message::MSG_TYPE_NOTIFICATION:
                 if ($this->getNotification()) {
