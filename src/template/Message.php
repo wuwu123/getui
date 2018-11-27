@@ -58,6 +58,47 @@ class Message implements Template
      */
     const MSG_TYPE_TRANSMISSION = 'transmission';
 
+    /**
+     * @param string $app_key
+     * @return $this
+     */
+    public function setAppKey(string $app_key)
+    {
+        $this->app_key = $app_key;
+        return $this;
+    }
+
+    /**
+     * @param bool $is_offline
+     * @return $this
+     */
+    public function setIsOffline(bool $is_offline)
+    {
+        $this->is_offline = $is_offline;
+        return $this;
+    }
+
+    /**
+     * @param float|int $expire_time
+     * @return $this
+     */
+    public function setExpireTime($expire_time)
+    {
+        $this->expire_time = $expire_time;
+        return $this;
+    }
+
+    /**
+     * @param string $msgtype
+     * @return $this
+     */
+    public function setMsgtype(string $msgtype)
+    {
+        $this->msgtype = $msgtype;
+        return $this;
+    }
+
+
 
     /**
      * 获取实体
@@ -72,42 +113,5 @@ class Message implements Template
             'offline_expire_time' => $this->expire_time,
             'msgtype' => $this->msgtype,
         ];
-    }
-
-    /**
-     * @param string $app_key
-     */
-    public function setAppKey($app_key)
-    {
-        $this->app_key = $app_key;
-    }
-
-    /**
-     * @param bool $is_offline
-     */
-    public function setIsOffline($is_offline)
-    {
-        $this->is_offline = $is_offline;
-    }
-
-    /**
-     * @param float|int $expire_time
-     */
-    public function setExpireTime($expire_time)
-    {
-        $this->expire_time = $expire_time;
-    }
-
-    /**
-     * @param string $msgtype
-     */
-    public function setMsgtype($msgtype)
-    {
-        $this->msgtype = $msgtype;
-    }
-
-    public function getMsgtype()
-    {
-        return $this->msgtype;
     }
 }

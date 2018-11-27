@@ -39,6 +39,48 @@ class Link implements Template
     protected $duration_end;
 
     /**
+     * @param array $style
+     * @return $this
+     */
+    public function setStyle(array $style)
+    {
+        $this->style = $style;
+        return $this;
+    }
+
+    /**
+     * @param string $url
+     * @return $this
+     */
+    public function setUrl(string $url)
+    {
+        $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * @param string $duration_begin
+     * @return $this
+     */
+    public function setDurationBegin(string $duration_begin)
+    {
+        $this->duration_begin = $duration_begin;
+        return $this;
+    }
+
+    /**
+     * @param string $duration_end
+     * @return $this
+     */
+    public function setDurationEnd(string $duration_end)
+    {
+        $this->duration_end = $duration_end;
+        return $this;
+    }
+
+
+
+    /**
      * 获取应用模板
      *
      * @return array
@@ -52,38 +94,6 @@ class Link implements Template
         $this->duration_begin && $res['duration_begin'] = $this->duration_begin;
         $this->duration_end && $res['duration_end'] = $this->duration_end;
         return $res;
-    }
-
-    /**
-     * @param array $style
-     */
-    public function setStyle($style)
-    {
-        $this->style = $style;
-    }
-
-    /**
-     * @param string $url
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
-
-    /**
-     * @param string $duration_begin
-     */
-    public function setDurationBegin($duration_begin)
-    {
-        $this->duration_begin = $duration_begin;
-    }
-
-    /**
-     * @param string $duration_end
-     */
-    public function setDurationEnd($duration_end)
-    {
-        $this->duration_end = $duration_end;
     }
 
 

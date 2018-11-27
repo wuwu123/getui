@@ -165,6 +165,226 @@ class PushInfo implements Template
     protected $only_wifi = false;
 
     /**
+     * @param array $aps
+     * @return $this
+     */
+    public function setAps(array $aps)
+    {
+        $this->aps = $aps;
+        return $this;
+    }
+
+    /**
+     * @param array $alert
+     * @return $this
+     */
+    public function setAlert(array $alert)
+    {
+        $this->alert = $alert;
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @return $this
+     */
+    public function setBody(string $body)
+    {
+        $this->body = $body;
+        return $this;
+    }
+
+    /**
+     * @param string $action_loc_key
+     * @return $this
+     */
+    public function setActionLocKey(string $action_loc_key)
+    {
+        $this->action_loc_key = $action_loc_key;
+        return $this;
+    }
+
+    /**
+     * @param string $loc_key
+     * @return $this
+     */
+    public function setLocKey(string $loc_key)
+    {
+        $this->loc_key = $loc_key;
+        return $this;
+    }
+
+    /**
+     * @param string $loc_args
+     * @return $this
+     */
+    public function setLocArgs(string $loc_args)
+    {
+        $this->loc_args = $loc_args;
+        return $this;
+    }
+
+    /**
+     * @param string $launch_image
+     * @return $this
+     */
+    public function setLaunchImage(string $launch_image)
+    {
+        $this->launch_image = $launch_image;
+        return $this;
+    }
+
+    /**
+     * @param string $title
+     * @return $this
+     */
+    public function setTitle(string $title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @param string $titile_loc_key
+     * @return $this
+     */
+    public function setTitileLocKey(string $titile_loc_key)
+    {
+        $this->titile_loc_key = $titile_loc_key;
+        return $this;
+    }
+
+    /**
+     * @param string $title_loc_args
+     * @return $this
+     */
+    public function setTitleLocArgs(string $title_loc_args)
+    {
+        $this->title_loc_args = $title_loc_args;
+        return $this;
+    }
+
+    /**
+     * @param string $subtitle
+     * @return $this
+     */
+    public function setSubtitle(string $subtitle)
+    {
+        $this->subtitle = $subtitle;
+        return $this;
+    }
+
+    /**
+     * @param string $subtitle_loc_key
+     * @return $this
+     */
+    public function setSubtitleLocKey(string $subtitle_loc_key)
+    {
+        $this->subtitle_loc_key = $subtitle_loc_key;
+        return $this;
+    }
+
+    /**
+     * @param string $subtitle_loc_args
+     * @return $this
+     */
+    public function setSubtitleLocArgs(string $subtitle_loc_args)
+    {
+        $this->subtitle_loc_args = $subtitle_loc_args;
+        return $this;
+    }
+
+    /**
+     * @param string $auto_badge
+     * @return $this
+     */
+    public function setAutoBadge(string $auto_badge)
+    {
+        $this->auto_badge = $auto_badge;
+        return $this;
+    }
+
+    /**
+     * @param string $sound
+     * @return $this
+     */
+    public function setSound(string $sound)
+    {
+        $this->sound = $sound;
+        return $this;
+    }
+
+    /**
+     * @param int $content_available
+     * @return $this
+     */
+    public function setContentAvailable(int $content_available)
+    {
+        $this->content_available = $content_available;
+        return $this;
+    }
+
+    /**
+     * @param string $category
+     * @return $this
+     */
+    public function setCategory(string $category)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * @param string $payload
+     * @return $this
+     */
+    public function setPayload(string $payload)
+    {
+        $this->payload = $payload;
+        return $this;
+    }
+
+    /**
+     * @param array $multimedia
+     * @return $this
+     */
+    public function setMultimedia(array $multimedia)
+    {
+        $this->multimedia = $multimedia;
+        return $this;
+    }
+
+    /**
+     * @param string $url
+     * @return $this
+     */
+    public function setUrl(string $url)
+    {
+        $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * @param int $type
+     * @return $this
+     */
+    public function setType(int $type)
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @param bool $only_wifi
+     * @return $this
+     */
+    public function setOnlyWifi(bool $only_wifi)
+    {
+        $this->only_wifi = $only_wifi;
+        return $this;
+    }
+
+    /**
      * 获取弹窗通知实体
      *
      * @return array
@@ -189,92 +409,5 @@ class PushInfo implements Template
         ];
         $this->payload && $res['payload'] = $this->payload;
         return $res;
-    }
-
-    /**
-     * 获取单透传通知实体
-     *
-     * @return array
-     */
-    public function getPayloadEntity()
-    {
-        return ['payload' => $this->payload];
-    }
-
-    public function getEntity(): array
-    {
-        return $this->getAlertEntity();
-    }
-
-    /**
-     * @param string $body
-     */
-    public function setBody($body)
-    {
-        $this->body = $body;
-    }
-
-    /**
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * @param string $auto_badge
-     */
-    public function setAutoBadge($auto_badge)
-    {
-        $this->auto_badge = $auto_badge;
-    }
-
-    /**
-     * @param string $sound
-     */
-    public function setSound($sound)
-    {
-        $this->sound = $sound;
-    }
-
-    /**
-     * @param int $content_available
-     */
-    public function setContentAvailable($content_available)
-    {
-        $this->content_available = $content_available;
-    }
-
-    /**
-     * @param string $payload
-     */
-    public function setPayload($payload)
-    {
-        $this->payload = $payload;
-    }
-
-    /**
-     * @param string $url
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
-
-    /**
-     * @param int $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * @param bool $only_wifi
-     */
-    public function setOnlyWifi($only_wifi)
-    {
-        $this->only_wifi = $only_wifi;
     }
 }

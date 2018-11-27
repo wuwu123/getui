@@ -12,7 +12,7 @@ class Notification implements Template
 {
     /**
      * 通知栏消息布局样式，详见Style说明
-     * @var array
+     * @var Style
      */
     protected $style;
 
@@ -56,43 +56,53 @@ class Notification implements Template
     }
 
     /**
-     * @param array $style
+     * @param Style $style
+     * @return $this
      */
-    public function setStyle($style)
+    public function setStyle(Style $style)
     {
-        $this->style = $style;
+        $this->style = $style->getEntity();
+        return $this;
     }
 
     /**
      * @param bool $transmission_type
+     * @return $this
      */
-    public function setTransmissionType($transmission_type)
+    public function setTransmissionType(bool $transmission_type)
     {
         $this->transmission_type = $transmission_type;
+        return $this;
     }
 
     /**
      * @param string $transmission_content
+     * @return $this
      */
-    public function setTransmissionContent($transmission_content)
+    public function setTransmissionContent(string $transmission_content)
     {
         $this->transmission_content = $transmission_content;
+        return $this;
     }
 
     /**
      * @param string $duration_begin
+     * @return $this
      */
-    public function setDurationBegin($duration_begin)
+    public function setDurationBegin(string $duration_begin)
     {
         $this->duration_begin = $duration_begin;
+        return $this;
     }
 
     /**
      * @param string $duration_end
+     * @return $this
      */
-    public function setDurationEnd($duration_end)
+    public function setDurationEnd(string $duration_end)
     {
         $this->duration_end = $duration_end;
+        return $this;
     }
 
 

@@ -251,13 +251,11 @@ abstract class Base
 
     public function getNotify()
     {
-        if (!$this->getTransmission()) {
-            return [];
+        $data = ["transmission_type" => true];
+        if ($this->getTransmission()) {
+            $data['transmission_content'] = $this->getTransmission();
         }
-        return [
-            "transmission_type" => true,
-            "transmission_content" => $this->getTransmission()
-        ];
+        return $data;
     }
 
     public function getLink()
