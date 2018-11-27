@@ -307,6 +307,7 @@ class HttpRequest
                 if (json_last_error() !== JSON_ERROR_NONE) {
                     throw new RequestException(ErrorCode::REQUEST_ERROR, json_last_error_msg());
                 }
+                $this->requestAfter();
                 return $this;
             } catch (\Throwable $e) {
                 $this->errorCount++;
