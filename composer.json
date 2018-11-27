@@ -1,0 +1,23 @@
+{
+    "name": "wujie/getui",
+    "description": "php 个推",
+    "type": "library",
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^6.3",
+        "symfony/cache": "^4.1"
+    },
+
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "wj",
+            "email": "1224805548@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "getui\\": "src/"
+        }
+    }
+}
