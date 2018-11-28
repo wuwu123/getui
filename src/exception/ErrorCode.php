@@ -13,4 +13,7 @@ class ErrorCode
 {
 
     const REQUEST_ERROR = "请求异常";
+
+    const NOT_AUTH = "not_auth";
+    const NOT_AUTH_MESSAGE = "无效的授权码";
 }

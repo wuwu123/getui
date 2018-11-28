@@ -19,6 +19,11 @@ class PushList extends Base
     }
 
 
+    /**
+     * 设置发送内容
+     *
+     * @return $this
+     */
     public function listBody()
     {
         $this->setUrl("save_list_body");
@@ -28,6 +33,13 @@ class PushList extends Base
         return $this;
     }
 
+    /**
+     * 要发送哪些用户
+     *
+     * @param array $cid
+     * @param string $taskid
+     * @return $this
+     */
     public function pushList(array $cid, string $taskid)
     {
         $this->setUrl("push_list");
@@ -39,6 +51,12 @@ class PushList extends Base
         return $this;
     }
 
+    /**
+     * 批量推送
+     *
+     * @param array $cid
+     * @return $this
+     */
     public function pushListSend(array $cid)
     {
         $this->listBody()->request();

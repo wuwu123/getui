@@ -61,6 +61,29 @@ abstract class Base
     protected $transmission;
 
     /**
+     * @var bool 立即打开app
+     */
+    protected $transmission_type = true;
+
+    /**
+     * @return bool
+     */
+    public function getTransmissionType(): bool
+    {
+        return $this->transmission_type;
+    }
+
+    /**
+     * @param bool $transmission_type
+     * @return $this
+     */
+    public function setTransmissionType(bool $transmission_type)
+    {
+        $this->transmission_type = $transmission_type;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getTransmission()
@@ -248,7 +271,7 @@ abstract class Base
 
     public function getNotify()
     {
-        $data = ["transmission_type" => true];
+        $data = ["transmission_type" => $this->getTransmissionType()];
         if ($this->getTransmission()) {
             $data['transmission_content'] = $this->getTransmission();
         }
@@ -288,6 +311,10 @@ abstract class Base
         return $data;
     }
 
+    public static function make()
+    {
+        return new static(...func_get_args());
+    }
 
     public function __construct(Config $config)
     {
@@ -299,11 +326,12 @@ abstract class Base
 
     public function request()
     {
-        $this->httpModel = new HttpRequest();
+        $this->httpModel = new HttpRequest(...func_get_args());
         if ($this->getCacheModel()) {
             $this->httpModel->setCacheModel($this->getCacheModel());
         }
         $this->httpModel = $this->httpModel->setConfig($this->getConfig())->request($this->method, $this->url, $this->getRequestBody());
+        return $this;
     }
 
     public function getResult()

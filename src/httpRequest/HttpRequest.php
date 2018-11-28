@@ -58,6 +58,8 @@ class HttpRequest
      */
     private $config = null;
 
+    private $newAuth = false;
+
 
     /**
      * @return Client
@@ -233,7 +235,7 @@ class HttpRequest
     }
 
 
-    public function __construct($retry = 0, $timeOut = 1)
+    public function __construct(int $retry = 0, int $timeOut = 1)
     {
         $this->retry = $retry;
         $this->setTimeOut($timeOut);
@@ -264,7 +266,7 @@ class HttpRequest
         if ($this->cacheModel) {
             $authToken->setCacheModel($this->cacheModel);
         }
-        $this->authtoken = $authToken->getAuthToken();
+        $this->authtoken = $authToken->getAuthToken($this->newAuth);
         return $this->authtoken;
     }
 
@@ -284,7 +286,7 @@ class HttpRequest
     }
 
     /**
-     * @param string $method
+     * @param $method
      * @param string $url
      * @param array $data
      * @param bool $isAuth
@@ -297,22 +299,24 @@ class HttpRequest
             try {
                 $this->init();
                 $this->resultData = $this->httpClient->request($method, $this->getRequestUrl($url), $this->getRequestData($data, $isAuth));
-                if ($this->resultData->getStatusCode() == 405) {
-                    throw new RequestException($url . "未开通", $this->resultData->getStatusCode());
-                }
+                $this->newAuth = false;
                 if ($this->resultData->getStatusCode() != 200) {
                     throw new RequestException(ErrorCode::REQUEST_ERROR, $this->resultData->getStatusCode());
                 }
                 $this->resultDataBody = json_decode($this->resultData->getBody()->getContents(), true);
                 if (json_last_error() !== JSON_ERROR_NONE) {
-                    throw new RequestException(ErrorCode::REQUEST_ERROR, json_last_error_msg());
+                    throw new RequestException(json_last_error_msg());
                 }
                 $this->requestAfter();
+                if ($this->errorCount < $this->retry && $this->getDesc() == ErrorCode::NOT_AUTH) {
+                    $this->newAuth = true;
+                    throw new RequestException(ErrorCode::NOT_AUTH);
+                }
                 return $this;
             } catch (\Throwable $e) {
                 $this->errorCount++;
                 $this->resultDataBody["result"] = self::HTTP_ERROR;
-                $this->resultDataBody["desc"] = $e->getMessage();
+                $this->resultDataBody["error_desc"] = $e->getMessage();
             }
         } while ($this->errorCount < $this->retry);
         return $this;
@@ -322,7 +326,7 @@ class HttpRequest
     {
         $this->resultDataBody = array_merge($this->resultDataBody, [
             "result" => $this->resultDataBody["result"] == self::HTTP_SUCCESS ? self::HTTP_SUCCESS : self::HTTP_ERROR,
-            "desc" => $this->resultDataBody["result"] ?? "",
+            "error_desc" => $this->resultDataBody["result"] ?? "",
         ]);
     }
 
@@ -334,7 +338,7 @@ class HttpRequest
 
     public function getDesc()
     {
-        return $this->resultDataBody["desc"] ?? "";
+        return $this->resultDataBody["error_desc"] ?? "";
     }
 
 }
