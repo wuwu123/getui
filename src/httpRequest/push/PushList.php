@@ -10,6 +10,7 @@ namespace getui\src\httpRequest\push;
 
 
 use getui\src\exception\RequestException;
+use getui\src\httpRequest\push\appCondition\AppConditions;
 
 class PushList extends Base
 {
@@ -65,6 +66,29 @@ class PushList extends Base
             return $this;
         }
         $this->pushList($cid, $taskid);
+        return $this;
+    }
+
+    /**
+     * 根据条件推送
+     *
+     * @param AppConditions $condition
+     * @return $this
+     * @throws RequestException
+     */
+    public function pushCondition(AppConditions $condition)
+    {
+        if (!$condition->getCondition()) {
+            throw new RequestException("查询条件为空");
+        }
+        $this->setUrl("push_app");
+        $message = $this->getMessage();
+        unset($message["offline_expire_time"]);
+        $this->requestBody = array_merge([
+            "message" => $message,
+            "requestid" => $this->getRequestId(),
+            "condition" => $condition->getCondition()
+        ], $this->getMessageContent());
         return $this;
     }
 
