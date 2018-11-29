@@ -48,8 +48,6 @@ class HttpRequest
 
     private $baseUrl = 'https://restapi.getui.com/v1/';
 
-    private $authtoken = null;
-
     /**
      * @var Config
      */
@@ -210,16 +208,6 @@ class HttpRequest
     }
 
     /**
-     * @param null $authtoken
-     * @return $this
-     */
-    public function setAuthtoken($authtoken)
-    {
-        $this->authtoken = $authtoken;
-        return $this;
-    }
-
-    /**
      * @return array
      * @desc
      */
@@ -250,20 +238,6 @@ class HttpRequest
         return $this->getBaseUrl() . $this->getConfig()->getAppId() . "/" . $url;
     }
 
-    /**
-     * @return null
-     * @throws RequestException
-     */
-    public function getAuthtoken()
-    {
-        if ($this->authtoken) {
-            return $this->authtoken;
-        }
-        $authToken = new AuthToken($this->config);
-        $this->authtoken = $authToken->getAuthToken($this->newAuth);
-        return $this->authtoken;
-    }
-
 
     public function getRequestData($data, $isAuth)
     {
@@ -272,7 +246,7 @@ class HttpRequest
         ];
         if ($isAuth && $this->getConfig()) {
             $request["headers"] = [
-                "authtoken" => $this->getAuthtoken()
+                "authtoken" => (new AuthToken($this->config))->getAuthToken($this->newAuth)
             ];
         }
         return $request;
@@ -303,6 +277,7 @@ class HttpRequest
                 }
                 $this->requestAfter();
                 if ($this->errorCount < $this->retry && $this->getDesc() == ErrorCode::NOT_AUTH) {
+                    $this->retry = max($this->retry, 1);
                     $this->newAuth = true;
                     throw new RequestException(ErrorCode::NOT_AUTH);
                 }
