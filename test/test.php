@@ -14,12 +14,6 @@ $config = new \getui\config\Config([
     "master_secret" => "3",
     "logo_url" => "http://dev.img.ybzg.com/static/app/user/getui_logo.png"
 ]);
-$config = new \getui\config\Config([
-    "app_key" => "9Z8RnGdrIc5n89bEBLCYcA",
-    "app_id" => "albD82DV9K6ZSVeSijm29A",
-    "master_secret" => "b2GKU3AkRP67bDjfEZ3291",
-    "logo_url" => "http://dev.img.ybzg.com/static/app/user/getui_logo.png"
-]);
 //用户状态
 //$user = \getui\httpRequest\user\User::make($config)->userStatus("1f118061aef2af0aaca1617a6d48d2d7")->request();
 
