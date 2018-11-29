@@ -6,7 +6,7 @@
  * Time: 下午3:18
  */
 
-namespace getui\src\template;
+namespace getui\template;
 
 class Message implements Template
 {

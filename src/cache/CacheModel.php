@@ -6,7 +6,7 @@
  * Time: 16:40
  */
 
-namespace getui\src\cache;
+namespace getui\cache;
 
 
 trait CacheModel

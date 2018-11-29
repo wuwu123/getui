@@ -6,7 +6,7 @@
  * Time: 下午2:28
  */
 
-namespace getui\src\template;
+namespace getui\template;
 
 class Notypopload implements Template
 {

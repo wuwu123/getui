@@ -6,7 +6,7 @@
  * Time: 16:46
  */
 
-namespace getui\src\httpRequest\push;
+namespace getui\httpRequest\push;
 
 
 use getui\config\Config;

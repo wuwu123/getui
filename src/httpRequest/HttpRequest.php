@@ -6,11 +6,11 @@
  * Time: 10:58
  */
 
-namespace getui\src\httpRequest;
+namespace getui\httpRequest;
 
 use getui\config\Config;
-use getui\src\exception\ErrorCode;
-use getui\src\exception\RequestException;
+use getui\exception\ErrorCode;
+use getui\exception\RequestException;
 use GuzzleHttp\Client;
 
 class HttpRequest
@@ -98,16 +98,6 @@ class HttpRequest
     }
 
     /**
-     * @param array $resultDataBody
-     * @return $this
-     */
-    public function setResultDataBody(array $resultDataBody)
-    {
-        $this->resultDataBody = $resultDataBody;
-        return $this;
-    }
-
-    /**
      * @return float
      */
     public function getTimeOut(): float
@@ -134,16 +124,6 @@ class HttpRequest
     }
 
     /**
-     * @param int $retry
-     * @return $this
-     */
-    public function setRetry(int $retry)
-    {
-        $this->retry = $retry;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getErrorCount(): int
@@ -152,31 +132,11 @@ class HttpRequest
     }
 
     /**
-     * @param int $errorCount
-     * @return $this
-     */
-    public function setErrorCount(int $errorCount)
-    {
-        $this->errorCount = $errorCount;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getBaseUrl(): string
     {
         return $this->baseUrl;
-    }
-
-    /**
-     * @param string $baseUrl
-     * @return $this
-     */
-    public function setBaseUrl(string $baseUrl)
-    {
-        $this->baseUrl = $baseUrl;
-        return $this;
     }
 
     /**
@@ -226,6 +186,9 @@ class HttpRequest
         $this->setTimeOut($timeOut);
     }
 
+    /**
+     * 请求前初始化参数
+     */
     private function init()
     {
         $this->httpClient = new Client($this->getRequestConfig());
@@ -233,6 +196,12 @@ class HttpRequest
         $this->resultDataBody = [];
     }
 
+    /**
+     * 请求url
+     *
+     * @param $url
+     * @return string
+     */
     public function getRequestUrl($url)
     {
         return $this->getBaseUrl() . $this->getConfig()->getAppId() . "/" . $url;

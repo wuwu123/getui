@@ -6,7 +6,7 @@
  * Time: 11:53
  */
 
-namespace getui\src\exception;
+namespace getui\exception;
 class RequestException extends \Exception
 {
 

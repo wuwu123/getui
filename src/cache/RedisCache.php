@@ -6,7 +6,7 @@
  * Time: 10:43
  */
 
-namespace getui\src\cache;
+namespace getui\cache;
 
 
 class RedisCache implements CacheInterface

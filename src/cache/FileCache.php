@@ -6,7 +6,7 @@
  * Time: 16:35
  */
 
-namespace getui\src\cache;
+namespace getui\cache;
 
 
 use Symfony\Component\Cache\Simple\FilesystemCache;

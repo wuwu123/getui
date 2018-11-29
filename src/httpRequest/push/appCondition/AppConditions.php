@@ -6,7 +6,7 @@
  * Time: 19:02
  */
 
-namespace getui\src\httpRequest\push\appCondition;
+namespace getui\httpRequest\push\appCondition;
 
 
 class AppConditions

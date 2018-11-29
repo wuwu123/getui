@@ -6,7 +6,7 @@
  * Time: 10:41
  */
 
-namespace getui\src\cache;
+namespace getui\cache;
 
 
 interface CacheInterface

@@ -7,10 +7,10 @@
  * Time: 17:00
  */
 
-namespace getui\src\httpRequest\push;
+namespace getui\httpRequest\push;
 
 
-use getui\src\template\Style;
+use getui\template\Style;
 
 trait RequestParams
 {

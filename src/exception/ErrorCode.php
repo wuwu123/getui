@@ -6,7 +6,7 @@
  * Time: 11:55
  */
 
-namespace getui\src\exception;
+namespace getui\exception;
 
 
 class ErrorCode

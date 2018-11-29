@@ -6,10 +6,10 @@
  * Time: 15:11
  */
 
-namespace getui\src\httpRequest\user;
+namespace getui\httpRequest\user;
 
-use getui\src\httpRequest\HttpRequest;
-use getui\src\httpRequest\HttpRequestCommon;
+use getui\httpRequest\HttpRequest;
+use getui\httpRequest\HttpRequestCommon;
 
 class User extends HttpRequestCommon
 {

@@ -6,7 +6,7 @@
  * Time: 下午2:14
  */
 
-namespace getui\src\template;
+namespace getui\template;
 
 class Link implements Template
 {

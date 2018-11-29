@@ -6,11 +6,11 @@
  * Time: 15:48
  */
 
-namespace getui\src\httpRequest\push;
+namespace getui\httpRequest\push;
 
 
-use getui\src\exception\RequestException;
-use getui\src\httpRequest\push\appCondition\AppConditions;
+use getui\exception\RequestException;
+use getui\httpRequest\push\appCondition\AppConditions;
 
 class PushList extends Base
 {

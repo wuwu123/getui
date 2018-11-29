@@ -6,7 +6,7 @@
  * Time: 下午1:44
  */
 
-namespace getui\src\template;
+namespace getui\template;
 
 /**
  * 安卓通知样式实体类

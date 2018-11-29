@@ -6,11 +6,11 @@
  * Time: 16:06
  */
 
-namespace getui\src\httpRequest\push;
+namespace getui\httpRequest\push;
 
 use getui\config\Config;
-use getui\src\httpRequest\HttpRequest;
-use getui\src\template\Message;
+use getui\httpRequest\HttpRequest;
+use getui\template\Message;
 
 abstract class Base
 {

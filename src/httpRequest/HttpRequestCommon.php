@@ -6,11 +6,10 @@
  * Time: 15:15
  */
 
-namespace getui\src\httpRequest;
+namespace getui\httpRequest;
 
 
 use getui\config\Config;
-use getui\src\cache\CacheInterface;
 
 class HttpRequestCommon
 {

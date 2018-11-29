@@ -6,14 +6,14 @@
  * Time: 15:02
  */
 
-namespace getui\src\httpRequest\push;
+namespace getui\httpRequest\push;
 
 
-use getui\src\template\Link;
-use getui\src\template\Notification;
-use getui\src\template\Notypopload;
-use getui\src\template\PushInfo;
-use getui\src\template\Style;
+use getui\template\Link;
+use getui\template\Notification;
+use getui\template\Notypopload;
+use getui\template\PushInfo;
+use getui\template\Style;
 
 trait templateRequest
 {

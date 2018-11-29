@@ -6,14 +6,14 @@
  * Time: 12:08
  */
 
-namespace getui\src\httpRequest;
+namespace getui\httpRequest;
 
 
 use getui\config\Config;
-use getui\src\cache\CacheInterface;
-use getui\src\cache\CacheModel;
-use getui\src\cache\FileCache;
-use getui\src\exception\RequestException;
+use getui\cache\CacheInterface;
+use getui\cache\CacheModel;
+use getui\cache\FileCache;
+use getui\exception\RequestException;
 
 class AuthToken
 {

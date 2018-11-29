@@ -6,7 +6,7 @@
  * Time: 15:32
  */
 
-namespace getui\src\template;
+namespace getui\template;
 
 
 interface Template

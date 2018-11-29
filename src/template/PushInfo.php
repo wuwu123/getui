@@ -6,7 +6,7 @@
  * Time: 下午2:44
  */
 
-namespace getui\src\template;
+namespace getui\template;
 
 class PushInfo implements Template
 {
@@ -389,7 +389,7 @@ class PushInfo implements Template
      *
      * @return array
      */
-    public function getAlertEntity()
+    public function getEntity(): array
     {
         $res = [
             'aps' => [
