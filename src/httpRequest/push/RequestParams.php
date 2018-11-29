@@ -119,7 +119,7 @@ trait RequestParams
     public function getMessageContentCommon()
     {
         $style = new Style();
-        $style->setTitle($this->getTitle())->setText($this->getText())->setLogourl($this->config->getLogoUrl());
+        $style->setTitle($this->getTitle())->setText($this->getText())->setLogourl($this->getConfig()->getLogoUrl());
         $data["style"] = $style->getEntity();
         if ($this->getDurationBegin()) {
             $data["duration_begin"] = $this->getDurationBegin();

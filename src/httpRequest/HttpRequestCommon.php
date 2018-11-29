@@ -11,7 +11,6 @@ namespace getui\src\httpRequest;
 
 use getui\config\Config;
 use getui\src\cache\CacheInterface;
-use getui\src\cache\CacheModel;
 
 class HttpRequestCommon
 {
@@ -19,11 +18,6 @@ class HttpRequestCommon
      * @var Config
      */
     private $config;
-
-    /**
-     * @var CacheInterface
-     */
-    private $cacheModel;
 
     /**
      * @var HttpRequest
@@ -92,25 +86,6 @@ class HttpRequestCommon
 
 
     /**
-     * @return CacheInterface|null
-     */
-    public function getCacheModel()
-    {
-        return $this->cacheModel;
-    }
-
-    /**
-     * @param CacheInterface $cacheModel
-     * @return $this
-     */
-    public function setCacheModel(CacheInterface $cacheModel)
-    {
-        $this->cacheModel = $cacheModel;
-        return $this;
-    }
-
-
-    /**
      * @return HttpRequest
      */
     public function getHttpModel(): HttpRequest
@@ -162,9 +137,6 @@ class HttpRequestCommon
     public function request()
     {
         $this->httpModel = new HttpRequest(...func_get_args());
-        if ($this->getCacheModel()) {
-            $this->httpModel->setCacheModel($this->getCacheModel());
-        }
         $this->httpModel = $this->httpModel->setConfig($this->getConfig())->request($this->method, $this->url, $this->getRequestBody());
         return $this;
     }

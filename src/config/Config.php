@@ -6,8 +6,12 @@
  * Time: 12:11
  */
 namespace getui\config;
+use getui\src\cache\CacheInterface;
+use getui\src\cache\CacheModel;
+
 class Config
 {
+    use CacheModel;
     private $app_key;
     private $app_id;
     private $master_secret;

@@ -9,7 +9,6 @@
 namespace getui\src\httpRequest\push;
 
 use getui\config\Config;
-use getui\src\cache\CacheModel;
 use getui\src\httpRequest\HttpRequest;
 use getui\src\template\Message;
 
@@ -17,12 +16,12 @@ abstract class Base
 {
     use RequestParams;
     use templateRequest;
-    use CacheModel;
 
     protected $url;
     protected $requestBody;
 
     protected $method = HttpRequest::METHOD_POST;
+
     /**
      * @var Config
      */
@@ -327,9 +326,6 @@ abstract class Base
     public function request()
     {
         $this->httpModel = new HttpRequest(...func_get_args());
-        if ($this->getCacheModel()) {
-            $this->httpModel->setCacheModel($this->getCacheModel());
-        }
         $this->httpModel = $this->httpModel->setConfig($this->getConfig())->request($this->method, $this->url, $this->getRequestBody());
         return $this;
     }

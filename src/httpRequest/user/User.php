@@ -8,8 +8,6 @@
 
 namespace getui\src\httpRequest\user;
 
-use getui\config\Config;
-use getui\src\exception\RequestException;
 use getui\src\httpRequest\HttpRequest;
 use getui\src\httpRequest\HttpRequestCommon;
 

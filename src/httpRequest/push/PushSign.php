@@ -10,8 +10,6 @@ namespace getui\src\httpRequest\push;
 
 
 use getui\config\Config;
-use getui\src\exception\RequestException;
-use getui\src\template\Message;
 
 class PushSign extends Base
 {

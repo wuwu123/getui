@@ -8,7 +8,6 @@
 
 namespace getui\src\cache;
 
-use getui\config\Config;
 
 interface CacheInterface
 {

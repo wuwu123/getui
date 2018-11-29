@@ -12,6 +12,7 @@ namespace getui\src\httpRequest;
 use getui\config\Config;
 use getui\src\cache\CacheInterface;
 use getui\src\cache\CacheModel;
+use getui\src\cache\FileCache;
 use getui\src\exception\RequestException;
 
 class AuthToken
@@ -24,15 +25,17 @@ class AuthToken
 
     private $cacheKey;
 
-    /**
-     * @param CacheInterface $cacheModel
-     * @desc
-     */
-    public function setCacheModel(CacheInterface $cacheModel)
+    public function getCacheModel(): CacheInterface
     {
-        $this->cacheModel = $cacheModel;
+        if ($this->cacheModel) {
+            return $this->cacheModel;
+        }
+        if ($this->config->getCacheModel() instanceof CacheInterface) {
+            $this->cacheModel = $this->config->getCacheModel();
+        }
+        $this->cacheModel = new FileCache();
+        return $this->cacheModel;
     }
-
 
     /**
      * @return Config

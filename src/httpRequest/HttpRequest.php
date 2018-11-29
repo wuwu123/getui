@@ -9,15 +9,12 @@
 namespace getui\src\httpRequest;
 
 use getui\config\Config;
-use getui\src\cache\CacheInterface;
-use getui\src\cache\CacheModel;
 use getui\src\exception\ErrorCode;
 use getui\src\exception\RequestException;
 use GuzzleHttp\Client;
 
 class HttpRequest
 {
-    use CacheModel;
     const METHOD_POST = "POST";
     const METHOD_GET = "GET";
 
@@ -263,9 +260,6 @@ class HttpRequest
             return $this->authtoken;
         }
         $authToken = new AuthToken($this->config);
-        if ($this->cacheModel) {
-            $authToken->setCacheModel($this->cacheModel);
-        }
         $this->authtoken = $authToken->getAuthToken($this->newAuth);
         return $this->authtoken;
     }

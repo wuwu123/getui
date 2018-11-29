@@ -21,9 +21,10 @@ trait CacheModel
      */
     public function getCacheModel(): CacheInterface
     {
-        if (!$this->cacheModel) {
-            $this->cacheModel = new FileCache();
+        if ($this->cacheModel) {
+            return $this->cacheModel;
         }
+        $this->cacheModel = new FileCache();
         return $this->cacheModel;
     }
 
