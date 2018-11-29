@@ -7,6 +7,7 @@
  */
 namespace getui\config;
 use getui\cache\CacheModel;
+use getui\http\HttpInterface;
 
 class Config
 {
@@ -15,6 +16,30 @@ class Config
     private $app_id;
     private $master_secret;
     private $logo_url;
+
+    /**
+     * @var HttpInterface | null
+     */
+    private $httpModelConfig = null;
+
+    /**
+     * @return HttpInterface|null
+     */
+    public function getHttpModelConfig()
+    {
+        return $this->httpModelConfig;
+    }
+
+    /**
+     * @param HttpInterface|null $httpModelConfig
+     * @return $this
+     */
+    public function setHttpModelConfig(HttpInterface $httpModelConfig)
+    {
+        $this->httpModelConfig = $httpModelConfig;
+        return $this;
+    }
+
 
     /**
      * @return mixed

@@ -11,6 +11,8 @@ namespace getui\httpRequest;
 use getui\config\Config;
 use getui\exception\ErrorCode;
 use getui\exception\RequestException;
+use getui\http\GuHttp;
+use getui\http\HttpInterface;
 use GuzzleHttp\Client;
 
 class HttpRequest
@@ -21,7 +23,7 @@ class HttpRequest
     const HTTP_SUCCESS = "ok";
     const HTTP_ERROR = "error";
     /**
-     * @var Client
+     * @var HttpInterface
      */
     private $httpClient;
 
@@ -55,23 +57,23 @@ class HttpRequest
 
     private $newAuth = false;
 
-
     /**
-     * @return Client
+     * @return HttpInterface
      */
-    public function getHttpClient(): Client
+    public function getHttpClient($isNew = false): HttpInterface
     {
+        if (!$this->httpClient) {
+            $this->httpClient = $this->config->getHttpModelConfig();
+            if (!$this->httpClient || !($this->httpClient instanceof HttpInterface)) {
+                $isNew = false;
+                $this->httpClient = new GuHttp($this->getRequestConfig());
+            }
+        }
+        if ($isNew) {
+            $class = get_class($this->httpClient);
+            $this->httpClient = new $class($this->getRequestConfig());
+        }
         return $this->httpClient;
-    }
-
-    /**
-     * @param Client $httpClient
-     * @return $this
-     */
-    public function setHttpClient(Client $httpClient)
-    {
-        $this->httpClient = $httpClient;
-        return $this;
     }
 
 
@@ -191,7 +193,7 @@ class HttpRequest
      */
     private function init()
     {
-        $this->httpClient = new Client($this->getRequestConfig());
+        $this->httpClient = $this->getHttpClient(true);
         $this->resultData = null;
         $this->resultDataBody = [];
     }
@@ -240,7 +242,7 @@ class HttpRequest
                 if ($this->resultData->getStatusCode() != 200) {
                     throw new RequestException(ErrorCode::REQUEST_ERROR, $this->resultData->getStatusCode());
                 }
-                $this->resultDataBody = json_decode($this->resultData->getBody()->getContents(), true);
+                $this->resultDataBody = json_decode($this->resultData->getBody(), true);
                 if (json_last_error() !== JSON_ERROR_NONE) {
                     throw new RequestException(json_last_error_msg());
                 }

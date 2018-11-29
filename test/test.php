@@ -8,12 +8,15 @@
 
 require __DIR__."/../vendor/autoload.php";
 
-$config = new \getui\config\Config([
+$configArray = [
     "app_key" => "1",
     "app_id" => "2",
     "master_secret" => "3",
     "logo_url" => "http://dev.img.ybzg.com/static/app/user/getui_logo.png"
-]);
+];
+$configArray = require __DIR__."/config.php";
+$config = new \getui\config\Config($configArray);
+$config->setHttpModelConfig(new \getui\http\GuHttp());
 //用户状态
 //$user = \getui\httpRequest\user\User::make($config)->userStatus("1f118061aef2af0aaca1617a6d48d2d7")->request();
 
@@ -25,9 +28,9 @@ $config = new \getui\config\Config([
 //$user = \getui\httpRequest\user\User::make($config)->userAddTag("1f118061aef2af0aaca1617a6d48d2d7" , ["ceshi" , "wujie"])->request();
 
 //查询用户标签
-//$user = \getui\httpRequest\user\User::make($config)->userTag("1f118061aef2af0aaca1617a6d48d2d7")->request();
-//var_dump($user->getRequestResult());
-//exit();
+$user = \getui\httpRequest\user\User::make($config)->userTag("1f118061aef2af0aaca1617a6d48d2d7")->request();
+var_dump($user->getRequestResult());
+exit();
 
 //获取授权码
 //$auth = new \getui\httpRequest\AuthToken($config);
