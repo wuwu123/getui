@@ -28,9 +28,9 @@ $config->setHttpModelConfig(new \getui\http\GuHttp());
 //$user = \getui\httpRequest\user\User::make($config)->userAddTag("1f118061aef2af0aaca1617a6d48d2d7" , ["ceshi" , "wujie"])->request();
 
 //查询用户标签
-$user = \getui\httpRequest\user\User::make($config)->userTag("1f118061aef2af0aaca1617a6d48d2d7")->request();
-var_dump($user->getRequestResult());
-exit();
+//$user = \getui\httpRequest\user\User::make($config)->userTag("1f118061aef2af0aaca1617a6d48d2d7")->request();
+//var_dump($user->getRequestResult());
+//exit();
 
 //获取授权码
 //$auth = new \getui\httpRequest\AuthToken($config);
@@ -39,7 +39,7 @@ exit();
 //echo $auth->getAuthToken();
 //exit();
 
-//$push = new \getui\httpRequest\push\PushSign($config);
+$push = new \getui\httpRequest\push\PushSign($config);
 //$push->setMsgtype(\getui\template\Message::MSG_TYPE_LINK)
 //    ->setTitle("1")
 //    ->setText("22")
@@ -55,6 +55,15 @@ exit();
 //    ->setCid("1f118061aef2af0aaca1617a6d48d2d7")
 //    ->request();
 //var_dump($push->getHttpModel()->getResultDataBody());
+//
+$push->setMsgtype(\getui\template\Message::MSG_TYPE_TRANSMISSION)
+    ->setTitle("1")
+    ->setText("22")
+    ->setTransmission("https://www.baidu.com")
+    ->setCid("d1c1b23f02757650260973bc6cf1d5b6")
+    ->request();
+var_dump($push->getHttpModel()->getResultDataBody());
+exit();
 
 
 //批量推送

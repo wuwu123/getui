@@ -64,6 +64,26 @@ abstract class Base
      */
     protected $transmission_type = true;
 
+    public $is_offline = true;
+
+    /**
+     * @return bool
+     */
+    public function isOffline(): bool
+    {
+        return $this->is_offline;
+    }
+
+    /**
+     * @param bool $is_offline
+     * @return $this
+     */
+    public function setIsOffline(bool $is_offline)
+    {
+        $this->is_offline = $is_offline;
+        return $this;
+    }
+
     /**
      * @return bool
      */
@@ -229,6 +249,7 @@ abstract class Base
         $message = new Message();
         $message->setAppKey($this->config->getAppKey());
         $message->setMsgtype($this->getMsgtype());
+        $message->setIsOffline($this->isOffline());
         $this->message = $message->getEntity();
         return $this->message;
     }
