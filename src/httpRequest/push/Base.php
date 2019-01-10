@@ -39,7 +39,6 @@ abstract class Base
 
     /**
      * 消息类型
-     *
      * @var string
      */
     protected $msgtype = Message::MSG_TYPE_NOTIFICATION;
@@ -238,7 +237,6 @@ abstract class Base
 
     /**
      * 请求 message
-     *
      * @return mixed
      */
     public function getMessage()
@@ -258,7 +256,7 @@ abstract class Base
     {
         if ($this->getMsgtype() == Message::MSG_TYPE_TRANSMISSION) {
             if ($this->getPushInfo()) {
-                return $this->getPushInfo();
+                return array_merge($this->getTyansmission(), ['push_info' => $this->getPushInfo()]);
             }
             return $this->getTyansmission();
         }

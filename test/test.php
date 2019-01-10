@@ -59,6 +59,7 @@ $push = new \getui\httpRequest\push\PushSign($config);
 $push->setMsgtype(\getui\template\Message::MSG_TYPE_TRANSMISSION)
     ->setTitle("1")
     ->setText("22")
+    ->setIsOffline(false)
     ->setTransmission("https://www.baidu.com")
     ->setCid("d1c1b23f02757650260973bc6cf1d5b6")
     ->request();
